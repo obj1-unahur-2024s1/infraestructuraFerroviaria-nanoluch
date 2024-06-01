@@ -13,15 +13,20 @@ class Formacion {
 	}
 	
 	method cuantosPasajerosPuedeLlevar() = vagones.sum({v=>v.cantidadDePasajeros()})
+	
 	method cantidadVagonesPopulares() = vagones.count({v=>v.esPopular()})
+	
 	method esFormacionCarguera() = vagones.all({v=>v.carga()>1000})
+	
 	method vagonMasPesado() = vagones.max({v=>v.pesoMaximo()})
+	
 	method vagonMasLiviano() = vagones.min({v=>v.pesoMaximo()})
+	
 	method dispersionDePesos() = self.vagonMasPesado().pesoMaximo() - self.vagonMasLiviano().pesoMaximo()
+	
 	method cantidadDeBanios() = vagones.count({v=>v.tieneBanios()})
 	
-	method hacerMantenimiento() {
-		vagones.forEach({v=>v.recibirMantenimiento()})
+	method hacerMantenimiento() {vagones.forEach({v=>v.recibirMantenimiento()})
 	}
 	method vagonesConPasajeros() = vagones.filter({v=>v.cantidadDePasajeros()>0})
 	method vagonConMasPasajeros() = self.vagonesConPasajeros().max({v=>v.cantidadDePasajeros()})
